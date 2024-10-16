@@ -44,6 +44,7 @@ header
 main
   background: rgba(237, 235, 247, 1)
   .container
+    
     // background: rgba(237, 235, 247, 1)
     .main__top
       display: flex
@@ -67,6 +68,33 @@ main
             font-size: 14px
           img
             margin-right: 10px  
+    .main-carousel
+      display: flex
+      padding: 64px 0
+      overflow: hidden
+      width: 100%
+      position: relative
+
+      .main-carousel-track
+        display: flex
+        gap: 16px
+        animation: scroll 20s linear infinite
+        width: max-content
+        white-space: nowrap
+
+        .main-carousel-tag
+          width: min-content
+          border-radius: 360px
+          padding: 24px 48px
+          background-color:#fff
+
+          p
+            color: #070000
+@keyframes scroll 
+  0% 
+    transform: translateX(0)
+  100% 
+    transform: translateX(-50%)
 
 .inter
     .container
@@ -219,7 +247,7 @@ main
 
 .blog
   margin-top: 130px
-  margin-bottom: 120px
+  margin-bottom: 88px
   .container
     .info
       .title
@@ -233,6 +261,7 @@ main
 
     .cards
       margin-top: 75px
+      margin-bottom: 120px
       display: flex
       justify-content: space-between
       .card
@@ -270,6 +299,29 @@ main
             img
               width: 10px
               height: 10px
+  .gallery-carousel
+    display: flex
+    overflow: hidden
+    width: 100%
+    position: relative
+
+    img
+      width: 275px
+      height: 275px
+
+    .gallery-carousel-track
+      display: flex
+      gap: 16px
+      animation: scroll 20s linear infinite
+      width: max-content
+      white-space: nowrap
+
+@keyframes scroll
+  0%
+    transform: translateX(0)
+
+  100%
+    transform: translateX(-50%)
 
  
 footer

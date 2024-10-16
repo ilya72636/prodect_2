@@ -60,8 +60,33 @@
           </div>
           <img src="./img/negr.jpg" alt="">
         </div>
-        <div class="main_bottom">
-
+        <div class="main-carousel">
+          <div class="main-carousel-track">
+            <div class="main-carousel-tag">
+              <p>1-day delivery</p>
+            </div>
+            <div class="main-carousel-tag">
+              <p>Healthy supplement</p>
+            </div>
+            <div class="main-carousel-tag">
+              <p>Gluten-free</p>
+            </div>
+            <div class="main-carousel-tag">
+              <p>Natural products</p>
+            </div>
+            <div class="main-carousel-tag">
+              <p>Free shipping</p>
+            </div>
+            <div class="main-carousel-tag">
+              <p>Eco-friendly</p>
+            </div>
+            <div class="main-carousel-tag">
+              <p>Vitamins</p>
+            </div>
+            <div class="main-carousel-tag">
+              <p>Cruelty-Free</p>
+            </div>
+          </div>
         </div>
       </div>
     </main>
@@ -184,9 +209,12 @@
             </div>
           </div>
         </div>
+        
       </div>
     </div>
 
+
+    
 
     <div class="lady__grentPa">
       <div class="container">
@@ -367,6 +395,70 @@
             </div>
           </div>
         </div>
+        <div class="gallery-carousel">
+          <div class="gallery-carousel-track">
+            <img
+              class="gallery-carousel-tag"
+              src="./img/slaider (1).jpg"
+              alt="gallery_1"
+            />
+            <img
+              class="gallery-carousel-tag"
+              src="./img/slaider (2).jpg"
+              alt="gallery_2"
+            />
+            <img
+              class="gallery-carousel-tag"
+              src="./img/slaider (3).jpg"
+              alt="gallery_3"
+            />
+            <img
+              class="gallery-carousel-tag"
+              src="./img/slaider (4).jpg"
+              alt="gallery_4"
+            />
+            <img
+              class="gallery-carousel-tag"
+              src="./img/slaider (5).jpg"
+              alt="gallery_5"
+            />
+            <img
+              class="gallery-carousel-tag"
+              src="./img/slaider (6).jpg"
+              alt="gallery_6"
+            />
+            <img
+              class="gallery-carousel-tag"
+              src="./img/slaider (1).jpg"
+              alt="gallery_1"
+            />
+            <img
+              class="gallery-carousel-tag"
+              src="./img/slaider (2).jpg"
+              alt="gallery_2"
+            />
+            <img
+              class="gallery-carousel-tag"
+              src="./img/slaider (3).jpg"
+              alt="gallery_3"
+            />
+            <img
+              class="gallery-carousel-tag"
+              src="./img/slaider (4).jpg"
+              alt="gallery_4"
+            />
+            <img
+              class="gallery-carousel-tag"
+              src="./img/slaider (5).jpg"
+              alt="gallery_5"
+            />
+            <img
+              class="gallery-carousel-tag"
+              src="./img/slaider (6).jpg"
+              alt="gallery_6"
+            />
+          </div>
+        </div>
       </div>
     </div>
     
@@ -446,4 +538,83 @@
 
 
 </body>
+<script>
+  const carouselTrack = document.querySelector('.main-carousel-track')
+  const galleryTrack = document.querySelector('.gallery-carousel-track')
+
+  let tags = Array.from(carouselTrack.children)
+  let galleryTags = Array.from(galleryTrack.children)
+
+  function cloneTags(track, tags) {
+    while (track.children.length > tags.length) {
+      track.removeChild(track.lastChild)
+    }
+
+    let trackWidth = track.scrollWidth
+    const carouselWidth = track.parentElement.offsetWidth
+
+    while (trackWidth < carouselWidth * 2) {
+      tags.forEach(tag => {
+        const clone = tag.cloneNode(true)
+        track.appendChild(clone)
+      })
+      trackWidth = track.scrollWidth
+    }
+  }
+
+  cloneTags(carouselTrack, tags)
+  cloneTags(galleryTrack, galleryTags)
+
+  window.addEventListener('resize', () => {
+    cloneTags(carouselTrack, tags)
+    cloneTags(galleryTrack, galleryTags)
+  })
+
+  function infiniteScroll(track) {
+    const scrollLeft = track.scrollLeft
+    const trackWidth = track.scrollWidth
+    const carouselWidth = track.parentElement.offsetWidth
+
+    if (scrollLeft >= trackWidth / 2) {
+      track.scrollLeft = 0
+    } else {
+      track.scrollLeft += 1
+    }
+  }
+
+  let scrollInterval = setInterval(() => {
+    infiniteScroll(carouselTrack)
+    infiniteScroll(galleryTrack)
+  }, 20)
+
+  document
+    .querySelector('.main-carousel')
+    .addEventListener('mouseenter', () => {
+      clearInterval(scrollInterval)
+    })
+
+  document
+    .querySelector('.main-carousel')
+    .addEventListener('mouseleave', () => {
+      scrollInterval = setInterval(() => {
+        infiniteScroll(carouselTrack)
+        infiniteScroll(galleryTrack)
+      }, 20)
+    })
+
+  document
+    .querySelector('.gallery-carousel')
+    .addEventListener('mouseenter', () => {
+      clearInterval(scrollInterval)
+    })
+
+  document
+    .querySelector('.gallery-carousel')
+    .addEventListener('mouseleave', () => {
+      scrollInterval = setInterval(() => {
+        infiniteScroll(carouselTrack)
+        infiniteScroll(galleryTrack)
+      }, 20)
+    })
+</script>
 </html>
